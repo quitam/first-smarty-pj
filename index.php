@@ -11,6 +11,7 @@ $smarty->setCompileDir('templates_c');
 // Truyền dữ liệu cho template
 $smarty->assign('title', 'Hello, Smarty!');
 $smarty->assign('content', 'This is a simple Smarty template example.');
+$smarty->assign('percent', '75%');
 
 // Hiển thị template
 $smarty->display('example.tpl');
