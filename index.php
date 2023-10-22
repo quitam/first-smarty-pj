@@ -11,7 +11,13 @@ $smarty->setCompileDir('templates_c');
 // Truyền dữ liệu cho template
 $smarty->assign('title', 'Hello, Smarty!');
 $smarty->assign('content', 'This is a simple Smarty template example.');
-$smarty->assign('percent', '75%');
+
+// Xử lý biểu mẫu khi có dữ liệu POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if (isset($_POST['inputField']) && $_POST['inputField'] === "123") {
+    $smarty->assign('validInput', $_POST['inputField']);
+  }
+}
 
 // Hiển thị template
 $smarty->display('example.tpl');

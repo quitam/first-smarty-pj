@@ -3,27 +3,42 @@
 
 <head>
   <title>{$title}</title>
+  <style>
+    .alert {
+      padding: 20px;
+    }
+
+    .alert-success {
+      color: white;
+      background-color: green;
+    }
+
+    .alert-danger {
+      color: black;
+      background-color: red;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Disk Usage</h1>
-  <div>
-    <input class="dial" id="dial" data-max="100" data-angleoffset=-125 data-anglearc=250 data-fgcolor="#0099ff"
-      value="{$percent|substr:0:-1}">
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/jquery.knob/1.2.11/jquery.knob.min.js"></script>
+  {if isset($smarty.post.inputField) && $smarty.post.inputField == "123"}
+    <div class="alert alert-success" role="alert">
+      Giá trị hợp lệ: {$smarty.post.inputField}
+    </div>
+  {elseif isset($smarty.post.inputField)}
+    <div class="alert alert-danger" role="alert">
+      Giá trị không hợp lệ.
+    </div>
+  {/if}
 
-  <script>
-    $(function() {
-      $(".dial").knob({
-        format: function(value) {
-          return value + "%"
-        }
-      });
-    });
-  </script>
+  <form method="post" action="index.php">
+    <label for="inputField">Nhập số "123":</label>
+    <input type="text" name="inputField" id="inputField" />
+
+    <input type="submit" value="Kiểm tra" />
+  </form>
+
   <h1>{$title}</h1>
   <p>{$content}</p>
   {debug}
